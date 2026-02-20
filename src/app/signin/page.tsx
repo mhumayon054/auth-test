@@ -12,7 +12,7 @@ export default function SignInPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-
+const isPasswordValid = password.length >= 8;
   return (
 <main className="min-h-screen flex items-center justify-center px-4 py-14">
         <AuthCard
@@ -26,7 +26,10 @@ export default function SignInPage() {
             onSubmit={async (e) => {
               e.preventDefault();
               setError(null);
-
+if (!isPasswordValid) {
+  setError("Password must be at least 8 characters.");
+  return;
+}
               const res = await mutateSignIn({ email, password }).unwrap();
               if (!res.ok) {
                 setError(res.error ?? "Login failed");
@@ -69,7 +72,7 @@ export default function SignInPage() {
 
             <button
               type="submit"
-              disabled={isLoading}
+             disabled={isLoading || !isPasswordValid}
               className="w-full rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-medium text-white hover:opacity-90 disabled:opacity-60"
             >
               {isLoading ? "Signing in..." : "Sign in"}

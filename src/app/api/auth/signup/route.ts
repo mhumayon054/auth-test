@@ -37,9 +37,11 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ ok: true }, { status: 201 });
   } catch (e: any) {
-    return NextResponse.json(
-      { message: e?.message ?? "Server error" },
-      { status: 500 }
-    );
+      console.error("SIGNUP_ERROR:", e);
+  return NextResponse.json({ message: e?.message ?? "Server error" }, { status: 500 });
+    // return NextResponse.json(
+    //   { message: e?.message ?? "Server error" },
+    //   { status: 500 }
+    // );
   }
 }

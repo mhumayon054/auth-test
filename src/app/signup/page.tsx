@@ -12,7 +12,7 @@ export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
-
+const isPasswordValid = password.length >= 8;
   return (
 <main className="min-h-screen flex items-center justify-center px-4 py-14">
         <AuthCard
@@ -26,6 +26,10 @@ export default function SignUpPage() {
             onSubmit={async (e) => {
               e.preventDefault();
               setError(null);
+              if (!isPasswordValid) {
+  setError("Password must be at least 8 characters.");
+  return;
+}
               try {
                 await signUp({ email, password }).unwrap();
                 router.push("/signin");
@@ -66,7 +70,7 @@ export default function SignUpPage() {
 
             <button
               type="submit"
-              disabled={isLoading}
+             disabled={isLoading || !isPasswordValid}
               className="w-full rounded-xl bg-[var(--accent)] px-4 py-3 text-sm font-medium text-white hover:opacity-90 disabled:opacity-60"
             >
               {isLoading ? "Creating..." : "Create account"}
