@@ -27,7 +27,7 @@ export default function Topbar() {
 
   return (
     <>
-<header className="sticky top-0 z-40 w-full border-b border-white/10 bg-black/30 backdrop-blur">
+<header className="sticky top-0 z-40 w-full border-b-grey bg-black/5">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
           <Link href="/" className="text-lg font-semibold tracking-tight text-[var(--foreground)]">
             AuthTest
