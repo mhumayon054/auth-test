@@ -10,12 +10,10 @@ export default function Topbar() {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Close mobile menu when switching auth state
   useEffect(() => {
     setMenuOpen(false);
   }, [status]);
 
-  // Prevent background scroll when menu is open (mobile)
   useEffect(() => {
     if (!menuOpen) return;
     const prev = document.body.style.overflow;
@@ -33,7 +31,6 @@ export default function Topbar() {
             AuthTest
           </Link>
 
-          {/* Desktop Nav */}
           <nav className="hidden items-center md:flex" aria-label="Primary">
             <ul className="flex items-center gap-2">
               {isAuthed ? (
@@ -94,7 +91,6 @@ export default function Topbar() {
             </ul>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-full border border-[var(--border-strong)] bg-white px-3 py-2 text-sm text-[var(--foreground)] hover:bg-[var(--surface-muted)] md:hidden"
@@ -107,17 +103,14 @@ export default function Topbar() {
         </div>
       </header>
 
-      {/* Mobile overlay (does NOT push layout) */}
       {menuOpen && (
         <div className="fixed inset-0 z-40 md:hidden top-17.5">
-          {/* Backdrop */}
           <button
             aria-label="Close menu"
             className="absolute inset-0 bg-black/30"
             onClick={() => setMenuOpen(false)}
           />
 
-          {/* Panel */}
           <div className="relative mx-auto w-full max-w-6xl px-4 pt-3">
             <div className="overflow-hidden rounded-2xl border border-[var(--border)] bg-white/95 shadow-[0_20px_60px_rgba(0,0,0,0.18)] backdrop-blur">
               <nav aria-label="Mobile" className="px-3 py-3">

@@ -23,7 +23,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Do not allow system dark mode to flip the UI */
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: light;
